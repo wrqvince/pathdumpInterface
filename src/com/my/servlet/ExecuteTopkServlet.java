@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.TreeMap;
 
 import javax.servlet.ServletException;
@@ -16,7 +18,7 @@ import com.my.util.PathdumpUtils;
 /**
  * Servlet implementation class ExecuteServlet
  */
-public class ExecuteServlet extends HttpServlet {
+public class ExecuteTopkServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -32,12 +34,12 @@ public class ExecuteServlet extends HttpServlet {
 		int[] topk = { Integer.valueOf(num_of_query) };
 		aggCode.put("name", "topk_query_agg.py");
 		aggCode.put("argv", topk);
-
-		ArrayList<Object[]> result = PathdumpUtils.executeQuery(tree, query, aggCode);		//execute query, return result
-		TreeMap<Integer, HashMap<String, Object>> output = processData(result);			//turn the result to a treemap, so the sorted data can be displayed
+		
+		ArrayList<Map<String, Object>> result = PathdumpUtils.executeQuery(tree, query, aggCode);		//execute query, return result
+		TreeMap<Integer, ArrayList<HashMap<String, Object>>> output = processData(result);			//turn the result to a treemap, so the sorted data can be displayed
 		request.setAttribute("output", output);
 		request.setAttribute("num_of_query", num_of_query);
-		request.getRequestDispatcher("/pages/executeTopkSuccess.jsp").forward(request, response);
+		request.getRequestDispatcher("/pages/topk/executeTopkSuccess.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -48,25 +50,31 @@ public class ExecuteServlet extends HttpServlet {
 	/**
 	 * process output data to a treeMap, which is able to display in website
 	 */
-	public TreeMap<Integer, HashMap<String, Object>> processData(ArrayList<Object[]> result){
-		TreeMap<Integer, HashMap<String, Object>> output = new TreeMap<Integer, HashMap<String, Object>>(
+	public TreeMap<Integer, ArrayList<HashMap<String, Object>>> processData(ArrayList<Map<String, Object>> result){
+		TreeMap<Integer, ArrayList<HashMap<String, Object>>> output = new TreeMap<Integer, ArrayList<HashMap<String, Object>>>(
 				new Comparator<Integer>() {
 					public int compare(Integer a, Integer b) {
 						return b - a;
 					}
 				});
-		
-		for (int i = 0; i < result.size(); i++) {
+		Iterator<Map<String, Object>> iter = result.iterator();
+		int bytes = 0;
+		while (iter.hasNext()){
+			Map<String, Object> map = iter.next();
 			HashMap<String, Object> outMap = new HashMap<String, Object>();
-			Object[] content = result.get(i);
-			Integer bytes = Integer.valueOf((String)content[0]);
-			HashMap<String, Object> map = (HashMap<String, Object>) content[1];
-			HashMap<String, Object> flowid = (HashMap<String, Object>)map.get("flowid");
-			outMap.put("flowid", flowid);
+			outMap.put("flowid", map.get("flowid"));
 			outMap.put("path", map.get("path"));
-			output.put(bytes, outMap);
+			bytes = (Integer)map.get("bytes");
+			ArrayList<HashMap<String,Object>> list = output.get(bytes);
+			if(list == null){
+				list = new ArrayList<HashMap<String,Object>> ();
+				list.add(outMap);
+				output.put(bytes, list);
+			}else{
+				list.add(outMap);
+				output.put(bytes,list);
+			}
 		}
-		
 		return output;
 	}
 	
