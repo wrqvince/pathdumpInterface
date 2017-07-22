@@ -11,6 +11,96 @@
   </welcome-file-list>
   <servlet>
     <description></description>
+    <display-name>RegisterTopkServlet</display-name>
+    <servlet-name>RegisterTopkServlet</servlet-name>
+    <servlet-class>com.my.servlet.RegisterTopkServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterTopkServlet</servlet-name>
+    <url-pattern>/RegisterTopkServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ExecuteTopkServlet</display-name>
+    <servlet-name>ExecuteTopkServlet</servlet-name>
+    <servlet-class>com.my.servlet.ExecuteTopkServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExecuteTopkServlet</servlet-name>
+    <url-pattern>/ExecuteTopkServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UninstallTopkServlet</display-name>
+    <servlet-name>UninstallTopkServlet</servlet-name>
+    <servlet-class>com.my.servlet.UninstallTopkServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UninstallTopkServlet</servlet-name>
+    <url-pattern>/UninstallTopkServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RegisterPathconfServlet</display-name>
+    <servlet-name>RegisterPathconfServlet</servlet-name>
+    <servlet-class>com.my.servlet.RegisterPathconfServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterPathconfServlet</servlet-name>
+    <url-pattern>/RegisterPathconfServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RegisterPoortcpServlet</display-name>
+    <servlet-name>RegisterPoortcpServlet</servlet-name>
+    <servlet-class>com.my.servlet.RegisterPoortcpServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterPoortcpServlet</servlet-name>
+    <url-pattern>/RegisterPoortcpServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InstallPathconfServlet</display-name>
+    <servlet-name>InstallPathconfServlet</servlet-name>
+    <servlet-class>com.my.servlet.InstallPathconfServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InstallPathconfServlet</servlet-name>
+    <url-pattern>/InstallPathconfServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UninstallPathconfServlet</display-name>
+    <servlet-name>UninstallPathconfServlet</servlet-name>
+    <servlet-class>com.my.servlet.UninstallPathconfServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UninstallPathconfServlet</servlet-name>
+    <url-pattern>/UninstallPathconfServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ExecutePathconfServlet</display-name>
+    <servlet-name>ExecutePathconfServlet</servlet-name>
+    <servlet-class>com.my.servlet.ExecutePathconfServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExecutePathconfServlet</servlet-name>
+    <url-pattern>/ExecutePathconfServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowQueryServlet</display-name>
+    <servlet-name>ShowQueryServlet</servlet-name>
+    <servlet-class>com.my.servlet.ShowQueryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowQueryServlet</servlet-name>
+    <url-pattern>/ShowQueryServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>RegisterServlet</display-name>
     <servlet-name>RegisterServlet</servlet-name>
     <servlet-class>com.my.servlet.RegisterServlet</servlet-class>
@@ -18,15 +108,5 @@
   <servlet-mapping>
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/RegisterServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ExecuteServlet</display-name>
-    <servlet-name>ExecuteServlet</servlet-name>
-    <servlet-class>com.my.servlet.ExecuteServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ExecuteServlet</servlet-name>
-    <url-pattern>/ExecuteServlet</url-pattern>
   </servlet-mapping>
 </web-app>
